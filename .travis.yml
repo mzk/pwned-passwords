@@ -1,0 +1,9 @@
+language: php
+php:
+  - '8.2'
+  - '8.3'
+  - '8.4'
+script:
+  - composer install
+  - phpunit
+  - vendor/bin/phpstan analyse

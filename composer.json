@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "php": "*",
+        "php": ">=8.2",
         "guzzlehttp/guzzle": "^7.9",
         "psr/log": "^3.0"
     },

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Oldas\PwnedPasswords\Tests;
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 use Oldas\PwnedPasswords\Exception\CompromisedPasswordException;
@@ -11,7 +13,6 @@ use Psr\Log\LoggerInterface;
 
 class HaveIBeenPwnedServiceTest extends TestCase
 {
-
     public function testServiceReportsBadPassword(): void
     {
         $haveIBeenPwnedService = new HaveIBeenPwnedService(
@@ -70,6 +71,4 @@ class HaveIBeenPwnedServiceTest extends TestCase
 
         self::assertNull($haveIBeenPwnedService->isPwned('password'));
     }
-
-
 }

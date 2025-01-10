@@ -9,33 +9,26 @@ use GuzzleHttp\Exception\GuzzleException;
 use Oldas\PwnedPasswords\Exception\CompromisedPasswordException;
 use Psr\Log\LoggerInterface;
 use SensitiveParameter;
+
 use function hash;
 use function strtolower;
 use function substr;
 
 class HaveIBeenPwnedService implements HaveIBeenPwnedServiceInterface
 {
-
     private const API_URL = 'https://api.pwnedpasswords.com/range/';
 
-    private Client $client;
-    private float $timeoutInSeconds;
-    private LoggerInterface $logger;
-
     public function __construct(
-        Client $client,
-        float $timeoutInSeconds,
-        LoggerInterface $logger,
-    )
-    {
-
-        $this->client = $client;
-        $this->timeoutInSeconds = $timeoutInSeconds;
-        $this->logger = $logger;
+        private Client $client,
+        private float $timeoutInSeconds,
+        private LoggerInterface $logger,
+    ) {
     }
 
-    public function isPwned(#[SensitiveParameter] string $plaintextPassword): ?bool
-    {
+    public function isPwned(
+        #[SensitiveParameter]
+        string $plaintextPassword,
+    ): ?bool {
         $hashPassword = hash('sha1', $plaintextPassword);
         $prefix = substr($hashPassword, 0, 5);
 
@@ -55,12 +48,10 @@ class HaveIBeenPwnedService implements HaveIBeenPwnedServiceInterface
         return false;
     }
 
-    /**
-     * @param string $plaintextPassword
-     * @return void
-     */
-    public function validatePassword(#[SensitiveParameter] string $plaintextPassword): void
-    {
+    public function validatePassword(
+        #[SensitiveParameter]
+        string $plaintextPassword,
+    ): void {
         $isPwned = $this->isPwned($plaintextPassword);
         if ($isPwned === true) {
             throw CompromisedPasswordException::create();

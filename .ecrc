@@ -1,0 +1,11 @@
+{
+	"Exclude": [
+		"^vendor\/",
+		"^.git\/",
+		"^.idea\/",
+		"^var\/"
+	],
+	"Disable": {
+		"MaxLineLength": true
+	}
+}

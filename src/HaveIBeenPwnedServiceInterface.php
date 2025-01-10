@@ -8,6 +8,8 @@ use SensitiveParameter;
 
 interface HaveIBeenPwnedServiceInterface
 {
-    public function isPwned(#[SensitiveParameter] string $plaintextPassword): ?bool;
-
+    public function isPwned(
+        #[SensitiveParameter]
+        string $plaintextPassword,
+    ): ?bool;
 }

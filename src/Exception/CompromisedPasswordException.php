@@ -10,7 +10,10 @@ class CompromisedPasswordException extends RuntimeException
 {
     public static function create(): self
     {
-        return new self('This password has appeared in a data breach and your account could easily be compromised if you were to use it. This password cannot be used here and, if you use this password elsewhere, you should change it immediately.');
+        $errorMessage = 'This password has appeared in a data breach and your account could easily be compromised if you were to use it. ';
+        $advisoryNote = 'This password cannot be used here and, if you use this password elsewhere, you should change it immediately.';
+        return new self(
+            $errorMessage . $advisoryNote,
+        );
     }
-
 }

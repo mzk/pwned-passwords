@@ -6,7 +6,7 @@ on:
     pull_request:
 
 jobs:
-    phpcbf-check:
+    code-check:
         runs-on: ubuntu-24.04
 
         strategy:

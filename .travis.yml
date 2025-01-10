@@ -6,4 +6,5 @@ php:
 script:
   - composer install
   - phpunit
+  - vendor/bin/phpcs
   - vendor/bin/phpstan analyse
